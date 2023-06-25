@@ -5,7 +5,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\UserModel;
-use App\Models\ProfileModel;
+use App\Models\ProductModel;
 
 class Dashboard extends Controller
 {
@@ -43,23 +43,19 @@ class Dashboard extends Controller
     echo view('dashboard/profile', $data); // Kirim variabel $data ke view
     echo view('dashboard/footer');
 }
+public function product()
+{
+    $produkModel = new ProductModel();
+    $data['title'] = 'Product';
+    $data['produk'] = $produkModel->findAll(); // Retrieve all rows from the "produk" table
 
-    
+    echo view('dashboard/header', $data);
+    echo view('dashboard/navbar');
+    echo view('dashboard/sidebar');
+    echo view('dashboard/product', $data); // Pass the data to the view
+    echo view('dashboard/footer');
+}
 
-    
-    
-
-    
-    public function product()
-    {
-        helper(['form']);
-        $data['title'] = 'Product';
-        echo view('dashboard/header', $data);
-        echo view('dashboard/navbar');
-        echo view('dashboard/sidebar');
-        echo view('dashboard/product');
-        echo view('dashboard/footer');
-    }
     
     public function order()
     {

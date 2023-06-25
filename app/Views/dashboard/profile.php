@@ -10,21 +10,17 @@
     <div class="container">
         <h1>Profile</h1>
 
-        <?php if ($profile): ?>
-            <form class="form-container" action="<?= base_url('profile/update') ?>" method="post">
-                <div class="form-group">
-                    <label for="namaLengkap">Nama Lengkap</label>
-                    <input type="text" class="form-control" id="namaLengkap" name="NamaLengkap" value="<?= $profile['NamaLengkap'] ?>">
-                </div>
-                <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <input type="text" class="form-control" id="alamat" name="Alamat" value="<?= $profile['Alamat'] ?>">
-                </div>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </form>
-        <?php else: ?>
-            <p>Data pengguna tidak ditemukan.</p>
-        <?php endif; ?>
+        <form class="form-container" action="<?= base_url('profile/update') ?>" method="post">
+            <div class="form-group">
+                <label for="namaLengkap">Nama Lengkap</label>
+                <input type="text" class="form-control" id="namaLengkap" name="NamaLengkap">
+            </div>
+            <div class="form-group">
+                <label for="alamat">Alamat</label>
+                <input type="text" class="form-control" id="alamat" name="Alamat">
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
     </div>
 
     <!-- Bootstrap JS -->

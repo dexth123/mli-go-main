@@ -36,27 +36,32 @@
     </style>
 </head>
 <body>
-<form class="form-container">
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar -->
         <div class="container">
             <h1>Product Form</h1>
             <div class="product">
-                <?php for ($i = 1; $i <= 9; $i++) { ?>
+                <?php
+                // Ambil data produk dari database
+                $produk = [
+                    ['idproduk' => 1, 'nama' => 'Sayur 1', 'harga' => 10, 'jumlah' => 100],
+                    ['idproduk' => 2, 'nama' => 'Sayur 2', 'harga' => 20, 'jumlah' => 200],
+                    ['idproduk' => 3, 'nama' => 'Sayur 3', 'harga' => 30, 'jumlah' => 300]
+                ];
+                foreach ($produk as $product): ?>
                     <div class="product-item">
-                        <img src="<?= base_url('assets/images/product' . $i . '.jpg') ?>" class="product-image">
-                        <div class="product-name">Sayur <?= $i ?></div>
-                        <div class="product-price">$<?= ($i * 10) ?></div>
-                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#itemModal<?= $i ?>">Tambah</a>
-                        
+                        <img src="<?= base_url('assets/images/product' . $product['idproduk'] . '.jpg') ?>" class="product-image">
+                        <div class="product-name"><?= $product['nama'] ?></div>
+                        <div class="product-price">$<?= $product['harga'] ?></div>
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#itemModal<?= $product['idproduk'] ?>">Tambah</a>
                     </div>
                     <!-- Modal -->
-                    <div class="modal fade" id="itemModal<?= $i ?>" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel<?= $i ?>" aria-hidden="true">
+                    <div class="modal fade" id="itemModal<?= $product['idproduk'] ?>" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel<?= $product['idproduk'] ?>" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="itemModalLabel<?= $i ?>">Tambah Item - Sayur <?= $i ?></h5>
+                                    <h5 class="modal-title" id="itemModalLabel<?= $product['idproduk'] ?>">Tambah Item - <?= $product['nama'] ?></h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -64,23 +69,47 @@
                                 <div class="modal-body">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary" type="button" onclick="decreaseQuantity(<?= $i ?>)"><i class="fas fa-minus"></i></button>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="decreaseQuantity(<?= $product['idproduk'] ?>)"><i class="fas fa-minus"></i></button>
                                         </div>
-                                        <input type="number" class="form-control" id="quantity<?= $i ?>" value="1">
+                                        <input type="number" class="form-control" id="quantity<?= $product['idproduk'] ?>" value="1">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button" onclick="increaseQuantity(<?= $i ?>)"><i class="fas fa-plus"></i></button>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="increaseQuantity(<?= $product['idproduk'] ?>)"><i class="fas fa-plus"></i></button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onclick="addToCart(<?= $i ?>)">Tambahkan ke Keranjang</button>
+                                    <button type="button" class="btn btn-primary" onclick="addToCart(<?= $product['idproduk'] ?>)">Tambahkan ke Keranjang</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php endforeach; ?>
             </div>
+        </div>
+
+        <!-- Form Tambah Produk -->
+        <div class="container">
+            <h1>Tambah Produk</h1>
+            <form method="POST" action="process.php">
+                <div class="form-group">
+                    <label for="idproduk">ID Produk</label>
+                    <input type="text" class="form-control" id="idproduk" name="idproduk" required>
+                </div>
+                <div class="form-group">
+                    <label for="nama">Nama</label>
+                    <input type="text" class="form-control" id="nama" name="nama" required>
+                </div>
+                <div class="form-group">
+                    <label for="harga">Harga</label>
+                    <input type="text" class="form-control" id="harga" name="harga" required>
+                </div>
+                <div class="form-group">
+                    <label for="jumlah">Jumlah</label>
+                    <input type="text" class="form-control" id="jumlah" name="jumlah" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Tambah Produk</button>
+            </form>
         </div>
     </div>
 </div>
@@ -107,7 +136,7 @@
     function addToCart(productId) {
         var quantityInput = document.getElementById('quantity' + productId);
         var quantity = parseInt(quantityInput.value);
-        
+
         // Kirim data ke halaman order.php menggunakan AJAX
         $.ajax({
             url: '/dashboard/order.php',
@@ -127,7 +156,7 @@
                 console.log(error);
             }
         });
-        
+
         // Setelah menambahkan ke keranjang, Anda dapat menutup modal di sini jika diperlukan
         $('#itemModal' + productId).modal('hide');
     }

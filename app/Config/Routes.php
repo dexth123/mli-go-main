@@ -59,12 +59,13 @@ $routes->get('profile', 'ProfileController::index');
 $routes->post('profile/save', 'ProfileController::save');
 $routes->post('profile/update', 'ProfileController::update');
 
-$routes->get('/products', 'ProductController::index'); // Menampilkan daftar produk
-$routes->post('/products', 'ProductController::store'); // Menyimpan produk baru
-$routes->get('/products/(:num)', 'ProductController::show/$1'); // Menampilkan detail produk berdasarkan ID
-$routes->put('/products/(:num)', 'ProductController::update/$1'); // Memperbarui produk berdasarkan ID
-$routes->delete('/products/(:num)', 'ProductController::delete/$1'); // Menghapus produk berdasarkan ID
+$routes->get('/product', 'ProductController::index'); // Menampilkan daftar produk
+$routes->post('/product', 'ProductController::store'); // Menyimpan produk baru
+$routes->get('/product/(:num)', 'ProductController::show/$1'); // Menampilkan detail produk berdasarkan ID
+$routes->put('/product/(:num)', 'ProductController::update/$1'); // Memperbarui produk berdasarkan ID
+$routes->delete('/product/(:num)', 'ProductController::delete/$1'); // Menghapus produk berdasarkan ID
 
+$routes->post('/process', 'ProcessController::index');
 
 
 

@@ -43,13 +43,12 @@
         <div class="container">
             <h1>Product Form</h1>
             <div class="product">
-                <?php foreach ($products as $product) { ?>
+                <?php foreach ($produk as $product): ?>
                     <div class="product-item">
                         <img src="<?= base_url('assets/images/product' . $product['idproduk'] . '.jpg') ?>" class="product-image">
                         <div class="product-name"><?= $product['nama'] ?></div>
                         <div class="product-price">$<?= $product['harga'] ?></div>
                         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#itemModal<?= $product['idproduk'] ?>">Tambah</a>
-                        
                     </div>
                     <!-- Modal -->
                     <div class="modal fade" id="itemModal<?= $product['idproduk'] ?>" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel<?= $product['idproduk'] ?>" aria-hidden="true">
@@ -79,7 +78,7 @@
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
