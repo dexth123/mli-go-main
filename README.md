@@ -1,3 +1,6 @@
+![](https://github.com/dexth123/mli-go-main/blob/main/icegif-982.gif)
+
+
 # CodeIgniter 4 Framework
 
 ## What is CodeIgniter?
