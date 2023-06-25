@@ -2,61 +2,81 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
+use App\Models\LoginModel;
+use App\Models\ProfileModel;
 
 class ProfileController extends BaseController
 {
     public function index()
-    {
-        $userModel = new UserModel();
+{
+    $loginModel = new LoginModel();
+    $profileModel = new ProfileModel();
 
+    // Ambil data pengguna dari tabel "Login"
+    $user = $loginModel->first();
+
+    // Jika diperlukan, Anda dapat menggunakan $user['NoHp'] sebagai acuan untuk mengambil data profil dari tabel "Profile"
+    $profile = $profileModel->where('NoHp', $user['NoHp'])->first();
+
+    $data = [
+        'user' => $user,
+        'profile' => $profile
+    ];
+
+    return view('dashboard/profile', $data);
+}
+    public function save()
+    {
+        $userModel = new ProfileModel();
+    
         // Mengambil data NoHp dari session
         $noHp = session()->get('NoHp');
-
-        // Mengambil data user berdasarkan NoHp dari tabel "Login"
-        $user = $userModel->where('NoHp', $noHp)->first();
-
-        return view('profile', ['user' => $user]);
+    
+        // Ambil data dari form
+        $data = [
+            'NoHp' => $noHp,
+            'NamaLengkap' => $this->request->getPost('NamaLengkap') ?: 'Kosong',
+            'Alamat' => $this->request->getPost('Alamat') ?: 'Kosong',
+        ];
+    
+        // Simpan data ke dalam tabel Profile
+        $userModel->insert($data);
+    
+        return redirect()->to('/profile');
     }
-    public function save()
-{
-    $userModel = new UserModel();
+    
+    public function update()
+    {
+        helper(['form']);
 
-    // Mengambil data NoHp dari session
-    $noHp = session()->get('NoHp');
+        // Validate input data
+        $validationRules = [
+            'NamaLengkap' => 'required',
+            'Alamat' => 'required',
+            'Username' => 'required'
+        ];
 
-    // Ambil data dari form
-    $data = [
-        'NoHp' => $noHp,
-        'NamaLengkap' => $this->request->getPost('NamaLengkap') ?: 'Kosong',
-        'Alamat' => $this->request->getPost('Alamat') ?: 'Kosong',
-        'Username' => $user, // Menggunakan NoHp sebagai Username
-    ];
+        if ($this->validate($validationRules)) {
+            // Get the input data
+            $namaLengkap = $this->request->getPost('NamaLengkap');
+            $alamat = $this->request->getPost('Alamat');
+            $username = $this->request->getPost('Username');
 
-    // Simpan data ke dalam tabel User
-    $userModel->insert($data);
+            // Prepare the data for insertion
+            $data = [
+                'NamaLengkap' => $namaLengkap,
+                'Alamat' => $alamat,
+                'Username' => $username
+            ];
 
-    return redirect()->to('/profile');
-}
+            // Insert the data into the Profile table
+            $profileModel = new ProfileModel();
+            $profileModel->insert($data);
 
-public function update()
-{
-    $userModel = new UserModel();
-
-    // Mengambil data NoHp dari session
-    $noHp = session()->get('NoHp');
-
-    // Ambil data dari form
-    $data = [
-        'NamaLengkap' => $this->request->getPost('NamaLengkap') ?: 'Kosong',
-        'Alamat' => $this->request->getPost('Alamat') ?: 'Kosong',
-        'Username' => $noHp, // Menggunakan NoHp sebagai Username
-    ];
-
-    // Update data pada tabel User berdasarkan NoHp
-    $userModel->where('NoHp', $noHp)->update($data);
-
-    return redirect()->to('/profile');
-}
-
-}
+            return redirect()->to('/profile')->with('success', 'Data pengguna berhasil disimpan.');
+        } else {
+            // Validation failed, show error messages
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+    }
+}    
