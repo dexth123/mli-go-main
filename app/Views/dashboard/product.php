@@ -47,7 +47,7 @@
                     <div class="product-item">
                         <img src="<?= base_url('assets/images/product' . $product['idproduk'] . '.jpg') ?>" class="product-image">
                         <div class="product-name"><?= $product['nama'] ?></div>
-                        <div class="product-price">$<?= $product['harga'] ?></div>
+                        <div class="product-price"><?= $product['harga'] ?></div>
                         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#itemModal<?= $product['idproduk'] ?>">Tambah</a>
                     </div>
                     <!-- Modal -->

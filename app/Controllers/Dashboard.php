@@ -35,7 +35,7 @@ class Dashboard extends Controller
     $user = $userModel->where('NoHp', $noHp)->first();
 
     // Kirim data pengguna ke view
-    $data['user'] = $user;
+    $data['Profile'] = $user;
 
     echo view('dashboard/header', $data);
     echo view('dashboard/navbar');

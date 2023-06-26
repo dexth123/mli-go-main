@@ -34,10 +34,10 @@
             <a class="nav-link" href="/dashboard/profile"><i class="far fa-user"></i></a>
         </li>
         <li class="nav-item sidebar-item">
-            <a class="nav-link" href="/dashboard/order"><i class="fa-solid fa-basket-shopping"></i></a>
+            <a class="nav-link" href="/dashboard/product"><i class="fa-solid fa-store"></i></a>
         </li>
         <li class="nav-item sidebar-item">
-            <a class="nav-link" href="/dashboard/product"><i class="fa-solid fa-store"></i></a>
+            <a class="nav-link" href="/dashboard/order"><i class="fa-solid fa-basket-shopping"></i></a>
         </li>
         <li class="nav-item sidebar-item">
             <a class="nav-link" href="/dashboard/logout"><i class="fas fa-sign-out-alt"></i></a>
