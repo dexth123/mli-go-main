@@ -29,7 +29,8 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+
+//Routes Login dan Register
 $routes->get('register', 'AuthController::register');
 $routes->post('register', 'AuthController::create');
 $routes->post('register/create', 'AuthController::create');
@@ -37,42 +38,42 @@ $routes->get('login', 'AuthController::login');
 $routes->post('login', 'AuthController::authenticate');
 $routes->post('/login/authenticate', 'AuthController::authenticate');
 
-$routes->group('dashboard', function ($routes) {
-    $routes->get('/', 'Dashboard::index', ['as' => 'dashboard']);
-    $routes->post('mainpage', 'Dashboard::mainpage');
-    $routes->get('profile', 'Dashboard::profile', ['as' => 'profile']);
-    $routes->get('product', 'Dashboard::product', ['as' => 'product']);
-    $routes->get('order', 'Dashboard::order', ['as' => 'order']);
-    $routes->get('logout', 'Dashboard::logout', ['as' => 'logout']);
-});
+//Routes Home Penjual
+$routes->get('penjualhome', 'Homepenjual::indexpenjual');
+$routes->get('penjualhome/about', 'Homepenjual::about');
+$routes->get('penjualhome/contact', 'Homepenjual::contact');
+$routes->get('penjualhome/faq', 'Homepenjual::faq');
 
-$routes->group('dashboardpenjual', function ($routes) {
-    $routes->get('/', 'Dashboardpenjual::index', ['as' => 'dashboardpenjual']);
-    $routes->post('mainpage', 'Dashboardpenjual::mainpage');
-    $routes->get('profilepenjual', 'Dashboardpenjual::profilepenjual', ['as' => 'profilepenjual']);
-    $routes->get('productpenjual', 'Dashboardpenjual::productpenjual', ['as' => 'productpenjual']);
-    $routes->get('orderpenjual', 'Dashboardpenjual::orderpenjual', ['as' => 'orderpenjual']);
-    $routes->get('logoutpenjual', 'Dashboardpenjual::logoutpenjual', ['as' => 'logoutpenjual']);
-});
+//Routes Home Pembeli
+$routes->get('/', 'Home::index', ['as' => 'home']);
+$routes->get('/about', 'Home::about');
+$routes->get('/contact', 'Home::contact');
+$routes->get('/faq', 'Home::faq');
 
-$routes->get('profile', 'ProfileController::index');
-$routes->post('profile/save', 'ProfileController::save');
-$routes->post('profile/update', 'ProfileController::update');
+//Routes Logout
+$routes->get('logout', 'AuthController::logout');
 
-$routes->get('/product', 'ProductController::index'); // Menampilkan daftar produk
-$routes->post('/product', 'ProductController::store'); // Menyimpan produk baru
-$routes->get('/product/(:num)', 'ProductController::show/$1'); // Menampilkan detail produk berdasarkan ID
-$routes->put('/product/(:num)', 'ProductController::update/$1'); // Memperbarui produk berdasarkan ID
-$routes->delete('/product/(:num)', 'ProductController::delete/$1'); // Menghapus produk berdasarkan ID
+//Routes Produk Penjual
+$routes->get('produk', 'Produk::produk');
+$routes->get('/produk/show', 'Produk::show');
+$routes->get('/produk/addp', 'Produk::addp');
+$routes->post('/produk/create', 'Produk::create');
+$routes->get('produk/show/(:num)', 'Produk::show/$1');
+$routes->get('produk/edit/(:num)', 'Produk::edit/$1');
+$routes->post('produk/update/(:num)', 'Produk::update/$1');
+$routes->get('produk/delete/(:num)', 'Produk::delete/$1');
+$routes->post('produk/delete/(:num)', 'Produk::delete/$1');
 
-$routes->post('/process', 'ProcessController::index');
-
-
-
-
-
-
-
+//Routes Toko Pembeli
+$routes->get('toko', 'Toko::toko');
+$routes->get('/toko/show', 'Toko::show');
+$routes->get('/toko/addp', 'Toko::addp');
+$routes->post('/toko/create', 'Toko::create');
+$routes->get('toko/show/(:num)', 'Toko::show/$1');
+$routes->get('toko/edit/(:num)', 'Toko::edit/$1');
+$routes->post('toko/update/(:num)', 'Toko::update/$1');
+$routes->get('toko/delete/(:num)', 'Toko::delete/$1');
+$routes->post('toko/delete/(:num)', 'Toko::delete/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

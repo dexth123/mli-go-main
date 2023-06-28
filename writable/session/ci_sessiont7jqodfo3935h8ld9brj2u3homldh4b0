@@ -1,0 +1,9 @@
+__ci_last_regenerate|i:1687921316;_ci_previous_url|s:32:"http://localhost:8080/index.php/";error|s:238:"	<div class="errors" role="alert">
+		<ul>
+					<li>NoHp Harus diisi</li>
+					<li>Username Minimal 4 Karakter</li>
+					<li>Password Minimal 4 Karakter</li>
+					<li>Konfirmasi Password tidak sesuai dengan password</li>
+				</ul>
+	</div>
+";__ci_vars|a:3:{s:5:"error";s:3:"old";s:13:"_ci_old_input";s:3:"old";s:21:"_ci_validation_errors";s:3:"old";}_ci_old_input|a:2:{s:3:"get";a:0:{}s:4:"post";a:4:{s:14:"csrf_test_name";s:32:"4e0a641530ae8de9bc2bc9253869956e";s:4:"NoHp";s:0:"";s:8:"Username";s:3:"adi";s:8:"Password";s:3:"adi";}}_ci_validation_errors|a:4:{s:4:"NoHp";s:16:"NoHp Harus diisi";s:8:"Username";s:27:"Username Minimal 4 Karakter";s:8:"Password";s:27:"Password Minimal 4 Karakter";s:13:"password_conf";s:48:"Konfirmasi Password tidak sesuai dengan password";}

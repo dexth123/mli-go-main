@@ -1,94 +1,14 @@
-body {
-    margin: 0;
-    padding: 0;
-    padding-top: 70px;
-    font-family: sans-serif;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background: linear-gradient(to bottom, #12AD2B, #5dd381)
+ul.pagination li:hover {
+  
 }
-.card{
-    margin-bottom:20px;
-    border:none;
+ul.pagination li a{
+    text-decoration: none;
+    padding:5px 10px;
+    border:1px solid #dedede;
+    border-radius: 6px;
+    margin-right:2px;
 }
-
-footer{
-    background-color: #085816;
-    bottom: 0;
-}
-
-#contact{
-    border: none;
-    margin-top: 90px;
-    margin-left: 0;
-    margin-right: 0;
-    background-size: cover;
-    background-color: #085816;
-}
-.box {
-    width: 500px;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background: #191919;
-    ;
-    text-align: center;
-    transition: 0.25s;
-    margin-top: 100px
-}
-
-.box input[type="text"],
-.box input[type="password"] {
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid #3498db;
-    padding: 10px 10px;
-    width: 250px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
-    transition: 0.25s
-}
-
-.box h1 {
-    color: white;
-    text-transform: uppercase;
-    font-weight: 500
-}
-
-.product {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-}
-.product-item {
-    width: 200px;
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-}
-.product-image {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 10px;
-}
-.product-name {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-.product-price {
-    margin-bottom: 5px;
-}
-
-h1, h2, h3 , p {
-    font-family: sans-serif;
+ul.pagination li a:hover {
+    background-color: #4aaff8;
+    color:#fff;
 }

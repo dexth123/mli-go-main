@@ -48,14 +48,26 @@ class AuthController extends Controller
         $password = $this->request->getPost('Password');
         $user = $loginModel->where('Username', $username)->first();
     
-        if ($user && $password === $user['Password']) {
+        if ($user && $password === $user->Password) {
+            $userData = [
+                'NoHp' => $user->NoHp, // Assuming the user ID column is named 'id'
+                'Username' => $user->Username
+            ];
+    
+            // Store user data in session
+            session()->set('user', $userData);
             // Login success
-            return redirect()->to('/dashboard');
+            return redirect()->to('/');
         } else {
             // Login failed
             return redirect()->back()->with('error', 'Invalid username or password');
         }
     }
-    
+    public function logout()
+{
+    session()->destroy();
+    return redirect()->to('/');
+}
+
 
 }

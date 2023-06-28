@@ -8,5 +8,6 @@ class LoginModel extends Model
 {
     protected $table = 'login';
     protected $primaryKey = 'NoHp';
+    protected $returnType = 'object';
     protected $allowedFields = ['NoHp', 'Username', 'Password'];
 }

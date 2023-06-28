@@ -12,7 +12,15 @@
     <section class="container-fluid mb-4">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-4">
+            <?php if (!empty(session()->getFlashdata('error'))) : ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <h4>Periksa Entrian Form</h4>
+                    </hr />
+                    <?php echo session()->getFlashdata('error'); ?>
+                </div>
+            <?php endif; ?>
                 <form class="form-container" action="/register/create" method="POST">
+                <?= csrf_field(); ?>
                     <h4 class="text-center font-weight-bold">Sign-Up</h4>
                     <div class="form-group">
                         <label for="NoHp">No Hp</label>
@@ -27,6 +35,7 @@
                         <input type="Password" class="form-control" id="Password" name="Password" placeholder="Password">
                     </div>
                     <button type="submit" class="btn btn-dark btn-block">Register</button>
+                    <a href="login" class="text">Sudah punya akun?</a>
                 </form>
             </section>
         </section>

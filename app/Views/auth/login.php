@@ -11,15 +11,14 @@
     <section class="container-fluid mb-4">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-4">
+            <?php if (!empty(session()->getFlashdata('error'))) : ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <?php echo session()->getFlashdata('error'); ?>
+            </div>
+            <?php endif; ?>
                 <form class="form-container" action="/login/authenticate" method="POST">
+                <?= csrf_field(); ?>
                     <h2 class="text-center font-weight-bold">Login</h2>
-                    <?php if (session()->getFlashdata('error')) : ?>
-                        <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
-                    <?php endif; ?>
-                    <div class="form-group">
-                        <label for="NoHp">No Hp</label>
-                        <input type="int" class="form-control" id="NoHp" name="NoHp" placeholder="Masukkan Nomor Hp">
-                    </div>
                     <div class="form-group">
                         <label for="Username">Username</label>
                         <input type="text" class="form-control" id="Username" name="Username" placeholder="Enter username">
@@ -29,6 +28,7 @@
                         <input type="Password" class="form-control" id="Password" name="Password" placeholder="Password">
                     </div>
                     <button type="submit" name="submit" class="btn btn-dark btn-block">Sign In</button>
+                    <a href="register" class="text">Belum punya akun? daftar disini</a>
                 </form>
             </section>
         </section>
